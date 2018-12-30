@@ -24,6 +24,26 @@ using namespace std;
 
 
 */
+void writeTree(HANDLE h, int a)
+{
+	cout << "  ";
+	if (a < 10)
+	{
+		for (int i(a); i < 13; i++) cout << ' ';
+		for (int i(0); i < 2 * a + 1; i++)
+		{
+				SetConsoleTextAttribute(h, rand() % 15 + 1);
+				cout << '*';
+		}
+		for (int i(a); i < 13; i++) cout << ' ';
+    }
+	else
+		{
+		   SetConsoleTextAttribute(h, 2);
+		   cout << "           |||||           ";
+		}
+	cout << "  ";
+}
 int main(int argc, char*argv[])
 {
 	COORD pos = {0, 10};
@@ -52,7 +72,8 @@ int main(int argc, char*argv[])
 		SetConsoleCursorPosition(hConsole, pos);
 		for (int i(0); i < 13; i++) 
 		{
-			SetConsoleTextAttribute(hConsole, rand()%5+1);
+			writeTree(hConsole, i);
+			SetConsoleTextAttribute(hConsole, rand()%15+1);
 			cout << mc[i] << endl; 
 		}
 		Sleep(200);
